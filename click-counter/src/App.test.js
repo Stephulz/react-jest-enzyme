@@ -39,9 +39,77 @@ test('renders counter display', () => {
 });
 
 test('counter display starts at 0', () => {
-
+  const wrapper = setup();
+  const count = findByTestAttr(wrapper, "count").text();
+  expect(count).toBe("0");
 });
 
 test('clicking button increments counter display', () => {
+  const wrapper = setup();
+
+  // find the button 
+  const button = findByTestAttr(wrapper, "increment-button");
+
+  // click the button
+  button.simulate('click');
+
+  // find the display, and test that the number has been incremented
+  const count = findByTestAttr(wrapper, "count").text();
+  expect(count).toBe("1");
+});
+
+test('clicking button decrements counter display', () => {
+  const wrapper = setup();
+
+  // find the button 
+  const incrementButton = findByTestAttr(wrapper, "increment-button");
+  const decrementButton = findByTestAttr(wrapper, "decrement-button");
+
+  // click the button
+  incrementButton.simulate('click');
+  decrementButton.simulate('click');
+
+  // find the display, and test that the number has been decrement
+  const count = findByTestAttr(wrapper, "count").text();
+  expect(count).toBe("0");
+});
+
+test('clicking button decrement when zero throws error', () => {
+  const wrapper = setup();
+
+  // find the button   
+  const decrementButton = findByTestAttr(wrapper, "decrement-button");
+
+  // click the button  
+  decrementButton.simulate('click');
+
+  //find the error label
+  const errorLabel = findByTestAttr(wrapper, "error-label");
+
+  // find error label  
+  expect(errorLabel.text()).toBe("The counter cannot go below zero");
+});
+
+test('clicking button decrement when zero throws error then clear error on increment', () => {
+  const wrapper = setup();
+
+  // find the button   
+  const decrementButton = findByTestAttr(wrapper, "decrement-button");
+  const incrementButton = findByTestAttr(wrapper, "increment-button");
+
+  // click the button  
+  decrementButton.simulate('click');
+
+  //find the error label
+  const errorLabel = findByTestAttr(wrapper, "error-label");
+
+  // find error label  
+  expect(errorLabel).toBeTruthy();
+
+  // click the increment button
+  incrementButton.simulate('click');
+
+  // ensure error gone
+  expect(errorLabel).toMatchObject({});
 
 });
