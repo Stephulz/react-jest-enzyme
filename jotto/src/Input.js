@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function Input({ success, secretWord }) {
     const [currentGuess, setCurrentGuess] = useState("");
+    useEffect(() => {
+        console.log(currentGuess);
+    }, [currentGuess]);
 
     return (
         <div data-test="component-input">
@@ -18,8 +21,6 @@ export default function Input({ success, secretWord }) {
                         data-test="submit-button"
                         className="btn btn-primary mb-2"
                         onClick={(event) => {
-                            // TODO: update guessedWords
-                            // TODO: update guessedWords
                             event.preventDefault();
                             setCurrentGuess("");
                         }}
