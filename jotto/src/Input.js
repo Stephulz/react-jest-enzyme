@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export default function Input({ success, secretWord }) {
     const [currentGuess, setCurrentGuess] = useState("");
     useEffect(() => {
-        console.log(currentGuess);
     }, [currentGuess]);
 
     return (

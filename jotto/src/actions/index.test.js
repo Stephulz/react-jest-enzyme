@@ -10,8 +10,8 @@ describe('getSecretWord', () => {
     });
     test('secretWord is returned', () => {
         moxios.wait(() => {
-            const request = moxios.request.mostRecent();
-            request.responseWith({
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
                 status: 200,
                 response: 'party',
             });

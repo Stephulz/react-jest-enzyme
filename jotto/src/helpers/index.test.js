@@ -4,16 +4,16 @@ describe('getLetterMatchCount', () => {
     const secretWord = 'train';
     test('return correct count when there are no matching letters', () => {
         const letterMatchCount = getLetterMatchCount('bones', secretWord);
-        expect(letterMatchCount).toBe(0);
+        expect(letterMatchCount).toBe(1);
     });
 
     test('return the correct count when there are three matching letters', () => {
         const letterMatchCount = getLetterMatchCount('obtain', secretWord);
-        expect(letterMatchCount).toBe(3);
+        expect(letterMatchCount).toBe(4);
     });
 
     test('return the correct count when there are duplicate letters in the guess', () => {
         const letterMatchCount = getLetterMatchCount('attain', secretWord);
-        expect(letterMatchCount).toBe(3);
+        expect(letterMatchCount).toBe(4);
     });
 });
